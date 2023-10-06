@@ -5,7 +5,6 @@ import {
   Text,
   Image,
   Pressable,
-  ScrollView,
   SafeAreaView,
   Button,
 } from "react-native";
@@ -14,9 +13,7 @@ import photo from "../../assets/user.jpg";
 
 import {
   AntDesign,
-  Feather,
   Entypo,
-  Ionicons,
   MaterialIcons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
@@ -41,7 +38,7 @@ const DetailsScreen = ({ navigation }) => {
     // TODO: View Edit User
   };
 
-  const username = user.email.split("@")[0];
+  const username = user ? user.email.split("@")[0] : "test@gmail.com";
 
   return (
     <SafeAreaView style={styles.root}>

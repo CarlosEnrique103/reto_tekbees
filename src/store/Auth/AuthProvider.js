@@ -48,7 +48,7 @@ const fetchSignIn = async (dispatch, credentials) => {
     dispatch({ type: "SIGN_IN", payload: data.user });
   } catch (error) {
     console.error("Error al obtener datos de la API:", error);
-    Alert.alert("Error", "Ocurrio un error en el servidor");
+    Alert.alert("Error", "Crendenciales inválidas");
   }
 };
 
@@ -60,7 +60,7 @@ const fetchSignUp = async (dispatch, credentials) => {
     dispatch({ type: "SIGN_IN", payload: data.user });
   } catch (error) {
     console.error("Error al obtener datos de la API:", error);
-    Alert.alert("Error", "Ocurrio un error en el servidor");
+    Alert.alert("Error", "Crendenciales inválidas");
   }
 };
 
