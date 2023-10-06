@@ -1,8 +1,11 @@
+import React, { useCallback } from "react";
 import "react-native-gesture-handler";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View, StatusBar, Text } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { useCallback } from "react";
+
+import AuthNavigator from "./src/navigation/AuthNavigator";
+import AppNavigator from "./src/navigation/AppNavigator";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -23,22 +26,19 @@ export default function App() {
     return null;
   }
 
+  const isLogged = false;
+
   return (
-    <View style={styles.container} onLayout={onLayoutRootView}>
-      <Text style={styles.welcome}>Welcome</Text>
+    <View style={styles.root} onLayout={onLayoutRootView}>
+      <StatusBar style="dark" />
+      {!isLogged && <AuthNavigator />}
+      {isLogged && <AppNavigator />}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  root: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  welcome: {
-    fontSize: 50,
-    fontFamily: "Roboto-Black",
   },
 });
