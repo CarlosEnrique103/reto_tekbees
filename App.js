@@ -1,11 +1,10 @@
 import React, { useCallback } from "react";
 import "react-native-gesture-handler";
-import { StyleSheet, View, StatusBar, Text } from "react-native";
+import { StyleSheet, View, StatusBar } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-
-import AuthNavigator from "./src/navigation/AuthNavigator";
-import AppNavigator from "./src/navigation/AppNavigator";
+import AuthProvider from "./src/store/Auth/AuthProvider";
+import Main from "./src/components/Main";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -26,14 +25,13 @@ export default function App() {
     return null;
   }
 
-  const isLogged = true;
-
   return (
-    <View style={styles.root} onLayout={onLayoutRootView}>
-      <StatusBar style="dark" />
-      {!isLogged && <AuthNavigator />}
-      {isLogged && <AppNavigator />}
-    </View>
+    <AuthProvider>
+      <View style={styles.root} onLayout={onLayoutRootView}>
+        <StatusBar style="dark" />
+        <Main />
+      </View>
+    </AuthProvider>
   );
 }
 
