@@ -29,6 +29,14 @@ const authReducer = (state, action) => {
       isLoggedIn: true,
     };
   }
+
+  if (action.type === "LOGOUT") {
+    return {
+      ...state,
+      user: {},
+      isLoggedIn: false,
+    };
+  }
   return state;
 };
 
@@ -66,11 +74,16 @@ const AuthProvider = ({ children }) => {
     fetchSignUp(dispatch, data);
   };
 
+  const logoutHandler = () => {
+    dispatch({ type: "LOGOUT" });
+  };
+
   const value = {
     user: state.user,
     isLoggedIn: state.isLoggedIn,
     signIn: signInHandler,
     signUp: signUpHandler,
+    logout: logoutHandler,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

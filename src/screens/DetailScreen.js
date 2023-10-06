@@ -7,6 +7,7 @@ import {
   Pressable,
   ScrollView,
   SafeAreaView,
+  Button,
 } from "react-native";
 import { COLORS } from "../constants/colors";
 import photo from "../../assets/user.jpg";
@@ -23,7 +24,7 @@ import { Switch } from "react-native-paper";
 import AuthContext from "../store/Auth/auth-context";
 
 const DetailsScreen = ({ navigation }) => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   const [isOnDarkMode, setIsOnDarkMode] = useState(false);
   const [showLanguages, setShowLanguages] = useState(false);
@@ -127,6 +128,7 @@ const DetailsScreen = ({ navigation }) => {
             </View>
           </View>
         </View>
+        <Button title="Cerrar sesion" onPress={logout} />
       </View>
     </SafeAreaView>
   );
