@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 import { COLORS } from "../constants/colors";
 
-const Button = ({ title, onPress }) => {
+const Button = ({ title = "Button", onPress }) => {
   return (
     <Pressable style={styles.root} onPress={onPress}>
       <Text style={styles.text}>{title}</Text>
