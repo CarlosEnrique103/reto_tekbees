@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
+import { COLORS } from "../constants/colors";
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -15,5 +16,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: COLORS.whiteColor,
   },
 });

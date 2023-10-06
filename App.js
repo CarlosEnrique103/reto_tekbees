@@ -26,7 +26,7 @@ export default function App() {
     return null;
   }
 
-  const isLogged = false;
+  const isLogged = true;
 
   return (
     <View style={styles.root} onLayout={onLayoutRootView}>
