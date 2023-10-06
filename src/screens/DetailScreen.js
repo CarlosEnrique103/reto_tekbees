@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -20,9 +20,11 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import { Switch } from "react-native-paper";
+import AuthContext from "../store/Auth/auth-context";
 
 const DetailsScreen = ({ navigation }) => {
-  const [isOnNotification, setIsOnNotification] = useState(false);
+  const { user } = useContext(AuthContext);
+
   const [isOnDarkMode, setIsOnDarkMode] = useState(false);
   const [showLanguages, setShowLanguages] = useState(false);
   const [language, setLanguage] = useState(1);
@@ -38,11 +40,13 @@ const DetailsScreen = ({ navigation }) => {
     // TODO: View Edit User
   };
 
+  const username = user.email.split("@")[0];
+
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.photoContainer}>
         <Image source={photo} style={styles.photo} />
-        <Text style={styles.userText}>Test User</Text>
+        <Text style={styles.userText}>{username}</Text>
       </View>
       <View style={styles.fieldsContainer}>
         <View style={styles.section}>
@@ -52,7 +56,7 @@ const DetailsScreen = ({ navigation }) => {
               <Text>Username</Text>
             </View>
             <Pressable style={styles.item} onPress={handleNavigationEdit}>
-              <Text>Test</Text>
+              <Text>{username}</Text>
               <MaterialIcons
                 name="keyboard-arrow-right"
                 size={24}
@@ -67,7 +71,7 @@ const DetailsScreen = ({ navigation }) => {
             </View>
 
             <Pressable style={styles.item} onPress={handleNavigationEdit}>
-              <Text>test@gmail.com</Text>
+              <Text>{user.email}</Text>
               <MaterialIcons
                 name="keyboard-arrow-right"
                 size={24}

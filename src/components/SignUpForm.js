@@ -1,26 +1,29 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   StyleSheet,
   View,
   Text,
   ScrollView,
   TouchableWithoutFeedback,
+  Alert,
 } from "react-native";
 import { TextInput } from "react-native-paper";
 import { COLORS } from "../constants/colors";
 import Button from "./Button";
+import AuthContext from "../store/Auth/auth-context";
 
 const SignUpForm = ({ navigation }) => {
   const [data, setData] = useState({
     email: "",
     password: "",
-    confirmPassword: "asdas",
+    confirmPassword: "",
   });
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
   const [passwordMatch, setPasswordMatch] = useState(true);
+
+  const { signUp } = useContext(AuthContext);
 
   const handleChangeText = (key, value) => {
     if (key === "confirmPassword" && data["password"] !== value) {
@@ -34,18 +37,10 @@ const SignUpForm = ({ navigation }) => {
 
   const handleSubmit = () => {
     if (Object.values(data).some((value) => !value)) {
+      Alert.alert("Email y Password", "Campos requeridos.");
       return;
     }
-    console.log("Sending data", { data });
-  };
-
-  const handleRegister = () => {
-    if (password === confirmPassword) {
-      // Aquí puedes agregar lógica para registrar al usuario
-      console.log("Registro exitoso");
-    } else {
-      setPasswordMatch(false);
-    }
+    signUp(data);
   };
 
   return (

@@ -1,16 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   StyleSheet,
   View,
   Text,
   ScrollView,
   TouchableWithoutFeedback,
+  Alert,
 } from "react-native";
 import { TextInput } from "react-native-paper";
 import { COLORS } from "../constants/colors";
 import Button from "./Button";
+import AuthContext from "../store/Auth/auth-context";
 
 const SignInForm = ({ navigation }) => {
+  const { signIn } = useContext(AuthContext);
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -21,11 +24,12 @@ const SignInForm = ({ navigation }) => {
   const handleChangeText = (key, value) =>
     setData((prev) => ({ ...prev, [key]: value }));
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (Object.values(data).some((value) => !value)) {
+      Alert.alert("Email y Password", "Campos requeridos.");
       return;
     }
-    console.log("Sending data", { data });
+    signIn(data);
   };
 
   return (
