@@ -1,13 +1,17 @@
+import React, { Component } from "react";
 import { Pressable, StyleSheet, Text } from "react-native";
 import { COLORS } from "../constants/colors";
 
-const Button = ({ title = "Button", onPress }) => {
-  return (
-    <Pressable style={styles.root} onPress={onPress}>
-      <Text style={styles.text}>{title}</Text>
-    </Pressable>
-  );
-};
+class Button extends Component {
+  render() {
+    const { title = "Button", onPress } = this.props;
+    return (
+      <Pressable style={styles.root} onPress={onPress}>
+        <Text style={styles.text}>{title}</Text>
+      </Pressable>
+    );
+  }
+}
 
 export default Button;
 
